@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Data.TweetModel>;
+
+@{
+    ViewData["Title"] = "TweetView";
+}
+
+<br />
+<div class="container">
+
+  
+        <div class="row">
+            <div class="col col-sm-1 alert-info text-center">
+                Entry
+            </div>
+
+            <div class="col col-sm-2 alert-info text-center">
+                ID
+            </div>
+            <div class="col col-sm-2 alert-info text-center">
+                Date
+            </div>
+            <div class="col-sm-7 alert-info text-center">
+                Tweet
+            </div>
+        </div>
+  
+
+
+
+    @{
+        int count = 0;
+    }
+
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-1">
+                    @count
+                </div>
+                <div class="col col-sm-2">
+                    @Html.DisplayFor(model => item.id)
+                </div>
+                <div class="col col-sm-2">
+                    @Html.DisplayFor(model => item.stamp)
+                </div>
+                <div class="col-sm-7">
+                    @Html.DisplayFor(model => item.text)
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    }
+
+
+
+

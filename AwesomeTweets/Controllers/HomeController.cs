@@ -5,11 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AwesomeTweets.Models;
+using Data;
 
 namespace AwesomeTweets.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly TweetContext _dbContext;
+        public HomeController(TweetContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        //private TweetContext TweetDB = new TweetContext();
+        public IActionResult GetTweets()
+        {
+            return View(_dbContext.AllTweets);
+        }
+
         public IActionResult Index()
         {
             return View();

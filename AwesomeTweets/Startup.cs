@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Data;
 
 namespace AwesomeTweets
 {
@@ -31,10 +33,13 @@ namespace AwesomeTweets
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Add the database service
+            services.AddDbContext<TweetContext>(opt => opt.UseInMemoryDatabase("TweetContext"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -48,6 +53,16 @@ namespace AwesomeTweets
                 app.UseHsts();
             }
 
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<TweetContext>();
+                
+                //load the data into the database
+                if (!TweetContext.DownloadTweets(context))
+                    return;
+            }           
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
