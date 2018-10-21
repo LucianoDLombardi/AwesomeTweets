@@ -7,19 +7,19 @@ using Data;
 
 namespace AwesomeTweets.Controllers
 {
-    public class GetTweetsController : Controller
+    public class AllTweetsController : Controller
     {
         private readonly TweetContext _dbContext;
 
         //pass in the database context using dependency injection
 
-        public GetTweetsController(TweetContext dbContext)
+        public AllTweetsController(TweetContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         //Here we pass the downloaded tweets to GetTweets view
-        public IActionResult GetTweets()
+        public IActionResult Tweets()
         {
             return View(_dbContext.AllTweets);
         }
