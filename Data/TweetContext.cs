@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-
+//This serves as the in-memory database for all tweets from 2016 and 2017.
 
 namespace Data
 {

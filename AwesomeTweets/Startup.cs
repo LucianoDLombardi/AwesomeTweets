@@ -57,10 +57,9 @@ namespace AwesomeTweets
             {
                 var services = scope.ServiceProvider;
                 var context = services.GetRequiredService<TweetContext>();
-                
+
                 //load the data into the database
-                if (!TweetContext.DownloadTweets(context))
-                    return;
+                TweetContext.DownloadTweets(context);
             }           
             
             app.UseHttpsRedirection();

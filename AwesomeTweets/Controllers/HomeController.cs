@@ -12,12 +12,15 @@ namespace AwesomeTweets.Controllers
     public class HomeController : Controller
     {
         private readonly TweetContext _dbContext;
+
+        //pass in the database context using dependency injection
+
         public HomeController(TweetContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        //private TweetContext TweetDB = new TweetContext();
+        //Here we pass the downloaded tweets to GetTweets view
         public IActionResult GetTweets()
         {
             return View(_dbContext.AllTweets);
