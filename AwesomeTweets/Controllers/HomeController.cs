@@ -25,7 +25,7 @@ namespace AwesomeTweets.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_dbContext.AllTweets);
         }
 
         public IActionResult About()

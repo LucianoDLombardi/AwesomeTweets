@@ -1,5 +1,31 @@
-﻿@{
+﻿@model IEnumerable<Data.TweetModel>;
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+
+@{
+    var rand = new Random();
+    var randint = rand.Next(Model.Count() - 1);
+}
+
+<div class=" text-center">
+    <div class="space">
+        <h1>Your Random Tweet</h1>
+    </div>
+    <div class="space">
+
+        <div class="col">
+            <button type="button" class="btn btn-primary" onclick='location.reload();'>Get Gobbledegook</button>
+        </div>
+
+    </div>
+
+    <div class="space">
+
+        <h3>@Model.ElementAt(randint).text</h3>
+    </div>
+</div>
 
 
