@@ -49,7 +49,7 @@ namespace AwesomeTweets
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/AwesomeTweets/Error");
                 app.UseHsts();
             }
 
@@ -70,7 +70,7 @@ namespace AwesomeTweets
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=AwesomeTweets}/{action=Index}/{id?}");
             });
         }
     }
